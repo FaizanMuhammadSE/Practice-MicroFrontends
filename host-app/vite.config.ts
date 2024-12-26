@@ -15,10 +15,10 @@ export default defineConfig({
     }),
   ],
   build: {
+    manifest: true,
     modulePreload: false,
     target: 'esnext',
-
     minify: false,
-    cssCodeSplit: false,
+    // cssCodeSplit: false,
   },
 });
