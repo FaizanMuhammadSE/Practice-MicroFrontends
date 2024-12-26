@@ -1,5 +1,5 @@
 import { useState, lazy, Suspense } from 'react';
-
+import './App.css';
 // @ts-expect-error Type-Not-Resolved
 const List = lazy(() => import('todo_components/List'));
 // @ts-expect-error Type-Not-Resolved
@@ -12,6 +12,7 @@ function App() {
   return (
     <div style={{ margin: '0 auto' }}>
       <Suspense fallback={<p>Loading...</p>}>
+        <h1 className='heading'>Todo MFE</h1>
         <Input onSubmit={submitHandler} />
         <List items={todos} />
       </Suspense>
