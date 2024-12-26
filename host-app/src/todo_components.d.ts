@@ -1,5 +1,3 @@
-/// <reference types="vite/client" />
-
 import { ComponentType, ChangeEvent } from 'react';
 // types/todo_components.d.ts
 declare module 'todo_components/List' {
@@ -15,7 +13,3 @@ declare module 'todo_components/Input' {
   }>;
   export default Input;
 }
-
-type Carbon = {
-  num: number;
-};
