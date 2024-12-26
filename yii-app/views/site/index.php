@@ -3,14 +3,14 @@
 /** @var yii\web\View $this */
 
 // Register JavaScript file
-$this->registerJsFile('http://localhost:4174/assets/index-DW9Ecd95.js', [
+$this->registerJsFile($baseURL . $jsFiles[0], [
     'type' => 'module',
-    'crossorigin' => 'anonymous',
+    'crossorigin' => true,
 ]);
 
 // Register CSS file
-$this->registerCssFile('http://localhost:4174/assets/style-C6Q2IFCJ.css', [
-    'crossorigin' => 'anonymous',
+$this->registerCssFile($baseURL . $cssFiles[0], [
+    'crossorigin' => true,
 ]);
 
 $this->title = 'My Yii Application';

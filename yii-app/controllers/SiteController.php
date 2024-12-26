@@ -61,7 +61,48 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $baseURL = 'http://localhost:4174/';
+        // URL to your manifest.json file hosted on Azure or local server
+        $manifestUrl = $baseURL . '.vite/manifest.json';
+
+        // Fetch the manifest file content
+        $manifestContent = file_get_contents($manifestUrl);
+
+        // Decode the JSON to an associative array
+        $manifest = json_decode($manifestContent, true);
+
+
+        // Decode the JSON response
+        $manifest = json_decode($manifestContent, true);
+
+        // Entry points to your React app (usually defined in manifest.json)
+        $entryPoint = 'index.html';  // This can vary based on your Vite configuration
+
+        // Extracting the JS and CSS files
+        $jsFiles = [];
+        $cssFiles = [];
+
+        if (isset($manifest[$entryPoint])) {
+            $entryData = $manifest[$entryPoint];
+
+            // Check for JS files
+            if (isset($entryData['file'])) {
+                $jsFiles[] = $entryData['file'];
+            }
+
+            // Check for CSS files
+            if (isset($entryData['css'])) {
+                $cssFiles = array_merge($cssFiles, $entryData['css']);
+            }
+        }
+
+
+        // Pass the extracted JS and CSS files to the view
+        return $this->render('index', [
+            'baseURL' => $baseURL,
+            'jsFiles' => $jsFiles,
+            'cssFiles' => $cssFiles,
+        ]);
     }
 
     /**
